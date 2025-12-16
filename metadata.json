@@ -1,0 +1,64 @@
+{
+  "name": "BigQuery to Avro + CSV (Flex Template)",
+  "description": "Reads from a BigQuery table, applies filters and derived columns, writes Avro and CSV to Cloud Storage, and writes invalid rows to dead-letter JSON.",
+  "parameters": [
+    {
+      "name": "input_table",
+      "label": "Input BigQuery table",
+      "helpText": "BigQuery table spec in the form PROJECT:DATASET.TABLE",
+      "paramType": "TEXT",
+      "isOptional": false
+    },
+    {
+      "name": "output_prefix",
+      "label": "Base GCS output prefix",
+      "helpText": "GCS URI prefix for Avro/CSV outputs, e.g. gs://bucket/exports/run1",
+      "paramType": "TEXT",
+      "isOptional": false
+    },
+    {
+      "name": "filter_column",
+      "label": "Filter column",
+      "helpText": "Optional column name for equality filter, e.g. country.",
+      "paramType": "TEXT",
+      "isOptional": true
+    },
+    {
+      "name": "filter_value",
+      "label": "Filter value",
+      "helpText": "Optional value for filter_column, e.g. CA.",
+      "paramType": "TEXT",
+      "isOptional": true
+    },
+    {
+      "name": "amount_column",
+      "label": "Amount column",
+      "helpText": "Numeric column used to derive revenue_band.",
+      "paramType": "TEXT",
+      "isOptional": true
+    },
+    {
+      "name": "csv_columns",
+      "label": "CSV columns",
+      "helpText": "Comma-separated list of columns for CSV output.",
+      "paramType": "TEXT",
+      "isOptional": true
+    },
+    {
+      "name": "csv_delimiter",
+      "label": "CSV delimiter",
+      "helpText": "Delimiter for CSV output (',' or '|').",
+      "paramType": "TEXT",
+      "isOptional": true,
+      "defaultValue": ","
+    },
+    {
+      "name": "num_shards",
+      "label": "Number of shards",
+      "helpText": "Number of output shards for Avro and CSV.",
+      "paramType": "TEXT",
+      "isOptional": true,
+      "defaultValue": "5"
+    }
+  ]
+}
